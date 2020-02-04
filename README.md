@@ -1,6 +1,7 @@
 # jaggerScenario
 Two scenarios for local Discovery KeywordSearchService4 with three parameters which are provided by CSV file. 
 One scenario for Jmeter.
+
 **The goal was to write two indentical scenarios for Jagger and Jmeter, they should get query parameters from CSV file and send  GET requests to Discovery. Responses should be in xml format (scenarios should validate succes code and type of response). Also there is should be a custom metric (the amount of the response body in bytes).**
 
 ## Getting started
