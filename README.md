@@ -62,7 +62,7 @@ String fileContents = new File(pathToFile).text
         }
 ```
 
-Main problem is that postProcessor (and everything else in JMeter) are called after each request (not just each sample), which can be a problem if there are a lot of requests. 
+The main problem is that postProcessors (and everything else in JMeter) are called after each request (not just each sample), which can cause some issues if there are a lot of requests. 
 
 
 
