@@ -9,6 +9,7 @@ import com.griddynamics.jagger.engine.e1.collector.invocation.InvocationInfo;
 import com.griddynamics.jagger.engine.e1.collector.invocation.InvocationListener;
 import com.griddynamics.jagger.engine.e1.services.ServicesAware;
 import com.griddynamics.jagger.invoker.InvocationException;
+import com.griddynamics.jagger.invoker.v2.JHttpEndpoint;
 import com.griddynamics.jagger.invoker.v2.JHttpQuery;
 import com.griddynamics.jagger.invoker.v2.JHttpResponse;
 import org.slf4j.Logger;

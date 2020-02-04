@@ -8,12 +8,15 @@ import com.griddynamics.jagger.user.test.configurations.auxiliary.Id;
 import com.griddynamics.jagger.user.test.configurations.load.JLoadProfile;
 import com.griddynamics.jagger.user.test.configurations.load.JLoadProfileRps;
 import com.griddynamics.jagger.user.test.configurations.load.auxiliary.RequestsPerSecond;
+import com.griddynamics.jagger.user.test.configurations.loadbalancer.JLoadBalancer;
 import com.griddynamics.jagger.user.test.configurations.termination.JTerminationCriteria;
 import com.griddynamics.jagger.user.test.configurations.termination.JTerminationCriteriaIterations;
 import com.griddynamics.jagger.user.test.configurations.termination.auxiliary.IterationsNumber;
 import com.griddynamics.jagger.user.test.configurations.termination.auxiliary.MaxDurationInSeconds;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import static com.griddynamics.jagger.user.test.configurations.loadbalancer.JLoadBalancer.DefaultLoadBalancer.ROUND_ROBIN;
 
 @Configuration
 public class JhttpScenarioProvider {
@@ -23,6 +26,7 @@ public class JhttpScenarioProvider {
 
         JTestDefinition keyWordService4 =
                 JTestDefinition.builder(Id.of("keyWordService4"), new EndpointProvider())
+                        .withLoadBalancer(JLoadBalancer.builder(ROUND_ROBIN).withRandomSeed(123).build())
                         .withQueryProvider(new QueriesProvider())
                         .addValidator(new CodeValidator())
                         .addListener(new Listener())
