@@ -1,4 +1,4 @@
-package test;
+package test.Scenario2;
 
 import com.griddynamics.jagger.invoker.scenario.JHttpScenarioGlobalContext;
 import com.griddynamics.jagger.invoker.scenario.JHttpUserScenario;
@@ -7,9 +7,9 @@ import com.griddynamics.jagger.invoker.v2.JHttpEndpoint;
 import com.griddynamics.jagger.invoker.v2.JHttpQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import test.CsvProvider;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 

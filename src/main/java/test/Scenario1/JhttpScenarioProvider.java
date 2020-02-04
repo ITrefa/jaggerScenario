@@ -1,7 +1,5 @@
-package test;
+package test.Scenario1;
 
-import com.griddynamics.jagger.invoker.scenario.JHttpUserScenarioInvocationListener;
-import com.griddynamics.jagger.invoker.scenario.JHttpUserScenarioInvokerProvider;
 import com.griddynamics.jagger.user.test.configurations.JLoadScenario;
 import com.griddynamics.jagger.user.test.configurations.JLoadTest;
 import com.griddynamics.jagger.user.test.configurations.JParallelTestsGroup;
@@ -17,30 +15,21 @@ import com.griddynamics.jagger.user.test.configurations.termination.auxiliary.It
 import com.griddynamics.jagger.user.test.configurations.termination.auxiliary.MaxDurationInSeconds;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
+import test.ResponseCodeValidator;
 
 import static com.griddynamics.jagger.user.test.configurations.loadbalancer.JLoadBalancer.DefaultLoadBalancer.ROUND_ROBIN;
 
 @Configuration
-public class ScenarioProvider {
-
+public class JhttpScenarioProvider {
 
     @Bean
     public JLoadScenario jaggerLoadScenario() {
 
         JTestDefinition keyWordService =
-                JTestDefinition.builder(Id.of("keyWordService"), new SimpleScenario())
-                        .withInvoker((new JHttpUserScenarioInvokerProvider()))
-                        .withLoadBalancer(JLoadBalancer.builder(ROUND_ROBIN)
-                                .withExclusiveAccess()
-                                .withRandomSeed(1234)
-                                .build())
-                        .addListener(JHttpUserScenarioInvocationListener.builder()
-                                .withLatencyAvgStddevAggregators()
-                                .withLatencyMinMaxAggregators()
-                                .withLatencyPercentileAggregators(50D, 95D, 99D)
-                                .build())
+                JTestDefinition.builder(Id.of("keyWordService"), new EndpointProvider())
+                        .withQueryProvider(new QueriesProvider())
                         .addValidator(new ResponseCodeValidator())
+                        .addListener(new Listener())
                         //   .addValidator(new ResponseTypeValidator())
                         .build();
 
@@ -67,6 +56,4 @@ public class ScenarioProvider {
         return JLoadScenario.builder(Id.of("ls_1"), jParallelTestsGroup)
                 .build();
     }
-
-
 }

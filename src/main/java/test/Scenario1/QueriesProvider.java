@@ -1,6 +1,7 @@
-package test;
+package test.Scenario1;
 
 import com.griddynamics.jagger.invoker.v2.JHttpQuery;
+import test.CsvProvider;
 
 import java.util.ArrayList;
 import java.util.Iterator;
