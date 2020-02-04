@@ -18,7 +18,6 @@ import com.griddynamics.jagger.user.test.configurations.termination.auxiliary.Ma
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-
 import static com.griddynamics.jagger.user.test.configurations.loadbalancer.JLoadBalancer.DefaultLoadBalancer.ROUND_ROBIN;
 
 @Configuration
@@ -32,8 +31,6 @@ public class ScenarioProvider {
                 JTestDefinition.builder(Id.of("keyWordService"), new SimpleScenario())
                         .withInvoker((new JHttpUserScenarioInvokerProvider()))
                         .withLoadBalancer(JLoadBalancer.builder(ROUND_ROBIN)
-                                .withExclusiveAccess()
-                                .withRandomSeed(1234)
                                 .build())
                         .addListener(JHttpUserScenarioInvocationListener.builder()
                                 .withLatencyAvgStddevAggregators()
@@ -60,9 +57,6 @@ public class ScenarioProvider {
         JParallelTestsGroup jParallelTestsGroup = JParallelTestsGroup
                 .builder(Id.of("ptg_2"), jLoadTest)
                 .build();
-
-        // To launch your load scenario, set 'jagger.load.scenario.id.to.execute' property's value equal to the load scenario id
-        // You can do it via system properties or in the 'environment.properties' file
 
         return JLoadScenario.builder(Id.of("ls_2"), jParallelTestsGroup)
                 .build();
