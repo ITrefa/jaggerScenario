@@ -1,4 +1,4 @@
-package test;
+package test.Scenario2;
 
 import com.griddynamics.jagger.coordinator.NodeContext;
 import com.griddynamics.jagger.engine.e1.collector.ResponseValidator;

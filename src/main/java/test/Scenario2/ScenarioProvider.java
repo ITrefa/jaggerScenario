@@ -17,7 +17,6 @@ import com.griddynamics.jagger.user.test.configurations.termination.auxiliary.It
 import com.griddynamics.jagger.user.test.configurations.termination.auxiliary.MaxDurationInSeconds;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import test.ResponseCodeValidator;
 
 
 import static com.griddynamics.jagger.user.test.configurations.loadbalancer.JLoadBalancer.DefaultLoadBalancer.ROUND_ROBIN;
@@ -27,7 +26,7 @@ public class ScenarioProvider {
 
 
     @Bean
-    public JLoadScenario jaggerLoadScenario() {
+    public JLoadScenario jaggerLoadScenario2() {
 
         JTestDefinition keyWordService =
                 JTestDefinition.builder(Id.of("keyWordService"), new SimpleScenario())
