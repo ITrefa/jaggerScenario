@@ -90,14 +90,16 @@
             <stringProp name="filename"></stringProp>
             <stringProp name="parameters"></stringProp>
             <stringProp name="script">def size = prev.getBodySizeAsLong()
+def check = prev.getResponseCode()
+if (check !=&quot;200&quot;) {
+log.error(&quot;ERROR&quot;)
+}
+else {
 log.info(&quot;Size in bytes is: &quot; + size.toString())
 def pathToFile = vars.get(&quot;file&quot;)
 File file = new File(pathToFile)
 file.append(size + &quot;,&quot;)
-
-
-
-
+}
 
 </stringProp>
             <stringProp name="scriptLanguage">groovy</stringProp>
@@ -109,15 +111,23 @@ file.append(size + &quot;,&quot;)
             <stringProp name="filename"></stringProp>
             <stringProp name="cacheKey">true</stringProp>
             <stringProp name="script">def pathToFile = vars.get(&quot;file&quot;)
-String fileContents = new File(pathToFile).text
+int checkSize = new File(pathToFile).length()
+
+if (checkSize == 0) {
+       	log.info(&quot;Something went wrong&quot;)
+       }
+else {
+def fileContents = new File(pathToFile).text
        String[] strArr = fileContents.split(&quot;,&quot;)
+       
        int[] intArr = new int[strArr.length]
+  
        for (int i = 0; i &lt; strArr.length; i++) {
        intArr[i] = strArr[i].toInteger()
        }
 
         int maximum = 0
-        int minimum = 1000
+        int minimum = 100000 
         int avr = 0
         
         for(int j = 0; j &lt; intArr.length; j++){
@@ -129,9 +139,12 @@ String fileContents = new File(pathToFile).text
                 maximum = intArr[j]
             }
         }
-        log.info(&quot;MAXIMUM: &quot; + maximum + &quot; MINIMUM: &quot; + minimum + &quot; AVERAGE: &quot; + avr/intArr.length)
 
-     </stringProp>
+     
+     	log.info(&quot;MAXIMUM: &quot; + maximum + &quot; MINIMUM: &quot; + minimum + &quot; AVERAGE: &quot; + avr/intArr.length)
+
+     
+       }</stringProp>
           </JSR223PostProcessor>
           <hashTree/>
           <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Type" enabled="true">
