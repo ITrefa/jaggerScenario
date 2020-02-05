@@ -5,9 +5,9 @@ import com.griddynamics.jagger.user.test.configurations.JLoadTest;
 import com.griddynamics.jagger.user.test.configurations.JParallelTestsGroup;
 import com.griddynamics.jagger.user.test.configurations.JTestDefinition;
 import com.griddynamics.jagger.user.test.configurations.auxiliary.Id;
-import com.griddynamics.jagger.user.test.configurations.load.JLoadProfile;
-import com.griddynamics.jagger.user.test.configurations.load.JLoadProfileRps;
-import com.griddynamics.jagger.user.test.configurations.load.auxiliary.RequestsPerSecond;
+import com.griddynamics.jagger.user.test.configurations.load.JLoadProfileUserGroups;
+import com.griddynamics.jagger.user.test.configurations.load.JLoadProfileUsers;
+import com.griddynamics.jagger.user.test.configurations.load.auxiliary.NumberOfUsers;
 import com.griddynamics.jagger.user.test.configurations.termination.JTerminationCriteria;
 import com.griddynamics.jagger.user.test.configurations.termination.JTerminationCriteriaIterations;
 import com.griddynamics.jagger.user.test.configurations.termination.auxiliary.IterationsNumber;
@@ -29,17 +29,14 @@ public class JHttpScenarioProvider {
                         .addListener(new Listener())
                         .build();
 
-        JLoadProfile jLoadProfileRps = JLoadProfileRps
-                .builder(RequestsPerSecond.of(2))
-                .withMaxLoadThreads(1)
-                .withWarmUpTimeInMilliseconds(10000)
-                .build();
+
+        JLoadProfileUsers u1 = JLoadProfileUsers.builder(NumberOfUsers.of(1)).withStartDelayInSeconds(0).withLifeTimeInSeconds(80).build();
 
         JTerminationCriteria jTerminationCriteria = JTerminationCriteriaIterations
                 .of(IterationsNumber.of(9), MaxDurationInSeconds.of(15));
 
         JLoadTest jLoadTest1 = JLoadTest
-                .builder(Id.of("lt_1"), keyWordService4, jLoadProfileRps, jTerminationCriteria)
+                .builder(Id.of("lt_1"), keyWordService4, JLoadProfileUserGroups.builder(u1).build(), jTerminationCriteria)
                 .build();
 
 
