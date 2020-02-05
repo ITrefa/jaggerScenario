@@ -15,11 +15,11 @@ import com.griddynamics.jagger.user.test.configurations.termination.auxiliary.Ma
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+
 @Configuration
 public class JHttpScenarioProvider {
-
     @Bean
-    public JLoadScenario jaggerLoadScenario() {
+    public JLoadScenario loadScenario() {
 
         JTestDefinition keyWordService4 =
                 JTestDefinition.builder(Id.of("keyWordService4"), new EndpointProvider())
@@ -29,7 +29,7 @@ public class JHttpScenarioProvider {
                         .addListener(new Listener())
                         .build();
 
-        JLoadProfile jLoadProfileRps1 = JLoadProfileRps
+        JLoadProfile jLoadProfileRps = JLoadProfileRps
                 .builder(RequestsPerSecond.of(2))
                 .withMaxLoadThreads(1)
                 .withWarmUpTimeInMilliseconds(10000)
@@ -39,7 +39,7 @@ public class JHttpScenarioProvider {
                 .of(IterationsNumber.of(9), MaxDurationInSeconds.of(15));
 
         JLoadTest jLoadTest1 = JLoadTest
-                .builder(Id.of("lt_1"), keyWordService4, jLoadProfileRps1, jTerminationCriteria)
+                .builder(Id.of("lt_1"), keyWordService4, jLoadProfileRps, jTerminationCriteria)
                 .build();
 
 

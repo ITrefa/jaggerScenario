@@ -11,7 +11,6 @@ public class CsvProvider {
 
     private static final String COMMA_DELIMITER = ",";
 
-
     public List<List<String>> CsvProvider() {
         List<List<String>> records = new ArrayList<>();
         String pathToFile = "/Users/elaletina/jagger/src/main/resources/dataProvider.csv";

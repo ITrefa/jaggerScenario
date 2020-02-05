@@ -19,7 +19,6 @@ public class Listener extends ServicesAware implements Provider<InvocationListen
 
     private static Logger log = LoggerFactory.getLogger(Listener.class);
 
-
     private final String metricName = "size-of-body-in-bytes";
 
     @Override
