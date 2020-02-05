@@ -27,35 +27,6 @@ ScenarioID = ls_1
 ### Scenario
 Scenario.jmx file. Test plan for JMeter. Gets xml response from Discovery, count the amount of bytes for the response body (min, max, average), shows the result of calculation in log. 
 Two JSR223 PostProcessor (groovy language) are used for this. 
-```
-def size = prev.getBodySizeAsLong()
-log.info("Size in bytes is: " + size.toString())
-def pathToFile = vars.get("file")
-File file = new File(pathToFile)
-file.append(size + ",")
-```
-```
-def pathToFile = vars.get("file")
-String fileContents = new File(pathToFile).text
-       String[] strArr = fileContents.split(",")
-       int[] intArr = new int[strArr.length]
-       for (int i = 0; i < strArr.length; i++) {
-       intArr[i] = strArr[i].toInteger()
-       }
 
-        int maximum = 0
-        int minimum = 1000
-        int avr = 0
-        
-        for(int j = 0; j < intArr.length; j++){
-         avr = avr + intArr[j]
-         if (minimum > intArr[j]){
-                minimum = intArr[j]
-            }
-            if (maximum < intArr[j]){
-                maximum = intArr[j]
-            }
-        }
-```
 
 

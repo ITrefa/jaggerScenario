@@ -26,7 +26,6 @@ public class JhttpScenarioProvider {
 
         JTestDefinition keyWordService4 =
                 JTestDefinition.builder(Id.of("keyWordService4"), new EndpointProvider())
-                        .withLoadBalancer(JLoadBalancer.builder(ROUND_ROBIN).withRandomSeed(123).build())
                         .withQueryProvider(new QueriesProvider())
                         .addValidator(new CodeValidator())
                         .addListener(new Listener())

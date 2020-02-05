@@ -19,6 +19,7 @@ public class Listener extends ServicesAware implements Provider<InvocationListen
 
     private static Logger log = LoggerFactory.getLogger(Listener.class);
 
+
     private final String metricName = "size-of-body-in-bytes";
 
     @Override
@@ -45,6 +46,9 @@ public class Listener extends ServicesAware implements Provider<InvocationListen
                     JHttpResponse jHttpResponse = (JHttpResponse) invocationInfo.getResult();
                     JHttpQuery jHttpQuery= (JHttpQuery) invocationInfo.getQuery();
                     JHttpEndpoint jHttpEndpoint = (JHttpEndpoint) invocationInfo.getEndpoint();
+                    log.info("Response: " + jHttpResponse);
+                    log.info("Query: " + jHttpQuery);
+                    log.info("Endpoint: " + jHttpEndpoint);
                     int size = jHttpResponse.getBody().toString().getBytes().length;
                     getMetricService().saveValue(metricName, size);
                 }

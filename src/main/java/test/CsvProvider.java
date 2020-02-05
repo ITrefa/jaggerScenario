@@ -14,7 +14,7 @@ public class CsvProvider {
 
     public List<List<String>> CsvProvider() {
         List<List<String>> records = new ArrayList<>();
-        String pathToFile = "./jagger/src/main/resources/dataProvider.csv";
+        String pathToFile = "/Users/elaletina/jagger/src/main/resources/dataProvider.csv";
         try (
                 BufferedReader br = new BufferedReader(new FileReader(pathToFile))) {
             String line;
