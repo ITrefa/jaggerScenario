@@ -1,4 +1,4 @@
-package test.Scenario1;
+package Scenario1;
 
 import com.griddynamics.jagger.invoker.v2.JHttpEndpoint;
 

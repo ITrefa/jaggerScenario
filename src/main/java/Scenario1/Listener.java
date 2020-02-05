@@ -1,4 +1,4 @@
-package test.Scenario1;
+package Scenario1;
 
 import com.griddynamics.jagger.engine.e1.Provider;
 import com.griddynamics.jagger.engine.e1.collector.AvgMetricAggregatorProvider;
