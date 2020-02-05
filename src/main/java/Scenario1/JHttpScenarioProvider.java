@@ -8,6 +8,7 @@ import com.griddynamics.jagger.user.test.configurations.auxiliary.Id;
 import com.griddynamics.jagger.user.test.configurations.load.JLoadProfileUserGroups;
 import com.griddynamics.jagger.user.test.configurations.load.JLoadProfileUsers;
 import com.griddynamics.jagger.user.test.configurations.load.auxiliary.NumberOfUsers;
+import com.griddynamics.jagger.user.test.configurations.loadbalancer.JLoadBalancer;
 import com.griddynamics.jagger.user.test.configurations.termination.JTerminationCriteria;
 import com.griddynamics.jagger.user.test.configurations.termination.JTerminationCriteriaIterations;
 import com.griddynamics.jagger.user.test.configurations.termination.auxiliary.IterationsNumber;
@@ -23,6 +24,7 @@ public class JHttpScenarioProvider {
 
         JTestDefinition keyWordService4 =
                 JTestDefinition.builder(Id.of("keyWordService4"), new EndpointProvider())
+                        .withLoadBalancer(JLoadBalancer.builder(JLoadBalancer.DefaultLoadBalancer.ONE_BY_ONE).withExclusiveAccess().build())
                         .withQueryProvider(new QueriesProvider())
                         .addValidator(new CodeValidator())
                         .addValidator(new TypeValidator())
@@ -30,10 +32,10 @@ public class JHttpScenarioProvider {
                         .build();
 
 
-        JLoadProfileUsers u1 = JLoadProfileUsers.builder(NumberOfUsers.of(1)).withStartDelayInSeconds(0).withLifeTimeInSeconds(80).build();
+        JLoadProfileUsers u1 = JLoadProfileUsers.builder(NumberOfUsers.of(1)).withStartDelayInSeconds(0).withLifeTimeInSeconds(50).build();
 
         JTerminationCriteria jTerminationCriteria = JTerminationCriteriaIterations
-                .of(IterationsNumber.of(9), MaxDurationInSeconds.of(15));
+                .of(IterationsNumber.of(7), MaxDurationInSeconds.of(15));
 
         JLoadTest jLoadTest1 = JLoadTest
                 .builder(Id.of("lt_1"), keyWordService4, JLoadProfileUserGroups.builder(u1).build(), jTerminationCriteria)
