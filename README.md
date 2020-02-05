@@ -1,15 +1,14 @@
 # jaggerScenario
 Two scenarios for local Discovery KeywordSearchService4 with three parameters which are provided by CSV file. 
-One scenario for Jmeter.
 
-**The goal was to write two indentical scenarios for Jagger and Jmeter, they should get query parameters from CSV file and send  GET requests to Discovery. Responses should be in xml format (scenarios should validate succes code and type of response). Also there is should be a custom metric (the amount of the response body in bytes).**
+**The goal was to write two indentical scenarios for Jagger and Jmeter, they should get query parameters from CSV file and send  GET requests to Discovery. Responses should be in xml format (scenarios should validate success code and type of response). Also there is should be a custom metric (the amount of the response body in bytes).**
 
 ## Getting started
 To use this application you need to set up jagger:
 * [jagger](https://github.com/griddynamics/jagger) - Jagger project;
 * [jagger](http://griddynamics.github.io/jagger/doc/index.html) - Jagger user manual.
 
-To launch your load scenario, set 'jagger.load.scenario.id.to.execute' property's value equal to the load scenario id.
+To launch a load scenario, set 'jagger.load.scenario.id.to.execute' property's value equal to the load scenario id.
 You can do it via system properties or in the 'environment.properties' file.
 
 ```
@@ -23,13 +22,7 @@ cd ./target/{artifactdId}-{version}-full/
 ```
 ### Scenario1
 ScenarioID = ls_1
-Classes from com.griddynamics.jagger.invoker.v2.
-Gets xml response from Discovery, cannot count the amount of bytes for the response body. 
 
-### Scenario2
-ScenarioID = ls_2
-Classes from com.griddynamics.jagger.invoker.scenario.
-Gets json response from Discovery, can count the amount of bytes for the response body. 
 
 ### Scenario
 Scenario.jmx file. Test plan for JMeter. Gets xml response from Discovery, count the amount of bytes for the response body (min, max, average), shows the result of calculation in log. 
@@ -64,8 +57,5 @@ String fileContents = new File(pathToFile).text
             }
         }
 ```
-
-The main problem is that postProcessors (and everything else in JMeter) are called after each request (not just each sample), which can cause some issues if there are a lot of requests. 
-
 
 

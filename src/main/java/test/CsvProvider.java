@@ -10,11 +10,11 @@ import java.util.List;
 public class CsvProvider {
 
     private static final String COMMA_DELIMITER = ",";
-    private String pathToFile = "/Users/elaletina/jagger/src/main/resources/dataProvider.csv";
 
 
     public List<List<String>> CsvProvider() {
         List<List<String>> records = new ArrayList<>();
+        String pathToFile = "./jagger/src/main/resources/dataProvider.csv";
         try (
                 BufferedReader br = new BufferedReader(new FileReader(pathToFile))) {
             String line;

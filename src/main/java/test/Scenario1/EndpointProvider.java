@@ -13,7 +13,6 @@ public class EndpointProvider implements Iterable {
     public EndpointProvider() {
         JHttpEndpoint httpEndpoint = new JHttpEndpoint(URI.create("http://localhost:8082/"));
         endpoints.add(httpEndpoint);
-
     }
 
     @Override
