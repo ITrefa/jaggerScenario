@@ -24,7 +24,7 @@ public class JHttpScenarioProvider {
 
         JTestDefinition keyWordService4 =
                 JTestDefinition.builder(Id.of("keyWordService4"), new EndpointProvider())
-                        .withLoadBalancer(JLoadBalancer.builder(JLoadBalancer.DefaultLoadBalancer.ONE_BY_ONE).withExclusiveAccess().build())
+                        .withLoadBalancer(JLoadBalancer.builder(JLoadBalancer.DefaultLoadBalancer.ONE_BY_ONE).build())
                         .withQueryProvider(new QueriesProvider())
                         .addValidator(new CodeValidator())
                         .addValidator(new TypeValidator())
@@ -32,10 +32,11 @@ public class JHttpScenarioProvider {
                         .build();
 
 
-        JLoadProfileUsers u1 = JLoadProfileUsers.builder(NumberOfUsers.of(3)).withStartDelayInSeconds(0).withLifeTimeInSeconds(50).build();
+        JLoadProfileUsers u1 = JLoadProfileUsers.builder(NumberOfUsers.of(1)).withStartDelayInSeconds(0).withLifeTimeInSeconds(40).build();
+
 
         JTerminationCriteria jTerminationCriteria = JTerminationCriteriaIterations
-                .of(IterationsNumber.of(9), MaxDurationInSeconds.of(15));
+                .of(IterationsNumber.of(9), MaxDurationInSeconds.of(10));
 
         JLoadTest jLoadTest1 = JLoadTest
                 .builder(Id.of("lt_1"), keyWordService4, JLoadProfileUserGroups.builder(u1).build(), jTerminationCriteria)
