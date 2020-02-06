@@ -4,11 +4,15 @@ Two scenarios for local Discovery KeywordSearchService4 with three parameters wh
 **The goal was to write two identical scenarios for Jagger and JMeter, they should get query parameters from CSV file and send GET requests to Discovery. Responses should be in xml format (scenarios should validate success code and type of response). Also there is should be a custom metric (the amount of the response body in bytes).**
 
 ## Getting started
-To use this application you need to set up jagger:
+To use this application you need to set up 
+1. jagger:
 * [jagger](https://github.com/griddynamics/jagger) - Jagger project;
-* [jagger](http://griddynamics.github.io/jagger/doc/index.html) - Jagger user manual.
+* [jagger](http://griddynamics.github.io/jagger/doc/index.html) - Jagger user manual;
 
-And set up local Discovery. 
+2. local Discovery;
+
+3. JMeter:
+[Getting started](https://jmeter.apache.org/usermanual/get-started.html)
 
 ## Start
 
