@@ -33,6 +33,11 @@
               <stringProp name="Argument.value">out.csv</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
+            <elementProp name="file2" elementType="Argument">
+              <stringProp name="Argument.name">file2</stringProp>
+              <stringProp name="Argument.value">out2.csv</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
           </collectionProp>
         </Arguments>
         <hashTree/>
@@ -103,6 +108,70 @@ file.append(size + &quot;,&quot;)
 
 </stringProp>
             <stringProp name="scriptLanguage">groovy</stringProp>
+          </JSR223PostProcessor>
+          <hashTree/>
+          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="ProductCount" enabled="true">
+            <stringProp name="scriptLanguage">groovy</stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="script">def check = prev.getResponseCode()
+if (check !=&quot;200&quot;) {
+log.error(&quot;ERROR&quot;)
+}
+else {
+String response = prev.getResponseDataAsString()
+String resultStr = response.substring(response.indexOf(&quot;&lt;totalProductCount&gt;&quot;) + 19, response.indexOf(&quot;&lt;/totalProductCount&gt;&quot;))
+int count = Integer.parseInt(resultStr);
+log.info(&quot;Product count is : &quot; + count.toString())
+def pathToFile = vars.get(&quot;file2&quot;)
+File file = new File(pathToFile)
+file.append(count + &quot;,&quot;)
+}
+
+</stringProp>
+          </JSR223PostProcessor>
+          <hashTree/>
+          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="ProductCountMetric" enabled="true">
+            <stringProp name="scriptLanguage">groovy</stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="script">def pathToFile = vars.get(&quot;file2&quot;)
+int checkSize = new File(pathToFile).length()
+
+if (checkSize == 0) {
+       	log.info(&quot;Something went wrong&quot;)
+       }
+else {
+def fileContents = new File(pathToFile).text
+       String[] strArr = fileContents.split(&quot;,&quot;)
+       
+       int[] intArr = new int[strArr.length]
+  
+       for (int i = 0; i &lt; strArr.length; i++) {
+       intArr[i] = strArr[i].toInteger()
+       }
+
+        int maximum = 0
+        int minimum = 100000 
+        int avr = 0
+        
+        for(int j = 0; j &lt; intArr.length; j++){
+         avr = avr + intArr[j]
+         if (minimum &gt; intArr[j]){
+                minimum = intArr[j]
+            }
+            if (maximum &lt; intArr[j]){
+                maximum = intArr[j]
+            }
+        }
+
+     
+     	log.info(&quot;MAXIMUM: &quot; + maximum + &quot; MINIMUM: &quot; + minimum + &quot; AVERAGE: &quot; + avr/intArr.length)
+
+     
+       }</stringProp>
           </JSR223PostProcessor>
           <hashTree/>
           <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="ByteMetric" enabled="true">
