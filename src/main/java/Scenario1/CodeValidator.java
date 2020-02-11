@@ -6,6 +6,7 @@ import com.griddynamics.jagger.engine.e1.collector.ResponseValidatorProvider;
 import com.griddynamics.jagger.invoker.v2.JHttpEndpoint;
 import com.griddynamics.jagger.invoker.v2.JHttpQuery;
 import com.griddynamics.jagger.invoker.v2.JHttpResponse;
+import org.springframework.http.HttpStatus;
 
 public class CodeValidator implements ResponseValidatorProvider {
 
@@ -19,7 +20,7 @@ public class CodeValidator implements ResponseValidatorProvider {
 
             @Override
             public boolean validate(JHttpQuery jHttpQuery, JHttpEndpoint endpoint, JHttpResponse jHttpResponse, long l) {
-                return jHttpResponse.getStatus().value() == 200;
+                return jHttpResponse.getStatus() == HttpStatus.OK;
             }
         };
     }
