@@ -29,6 +29,7 @@ public class JHttpScenarioProvider {
                         .addValidator(new CodeValidator())
                         .addValidator(new TypeValidator())
                         .addListener(new ListenerByteSize())
+                        .addListener(new ListenerCountProduct())
                         .build();
 
 
