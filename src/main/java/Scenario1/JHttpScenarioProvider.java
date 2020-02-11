@@ -28,12 +28,11 @@ public class JHttpScenarioProvider {
                         .withQueryProvider(new QueriesProvider())
                         .addValidator(new CodeValidator())
                         .addValidator(new TypeValidator())
-                        .addListener(new Listener())
+                        .addListener(new ListenerByteSize())
                         .build();
 
 
-        JLoadProfileUsers u1 = JLoadProfileUsers.builder(NumberOfUsers.of(1)).withStartDelayInSeconds(0).withLifeTimeInSeconds(40).build();
-
+        JLoadProfileUsers u1 = JLoadProfileUsers.builder(NumberOfUsers.of(2)).withStartDelayInSeconds(0).withLifeTimeInSeconds(40).build();
 
         JTerminationCriteria jTerminationCriteria = JTerminationCriteriaIterations
                 .of(IterationsNumber.of(9), MaxDurationInSeconds.of(10));

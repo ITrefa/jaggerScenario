@@ -31,17 +31,8 @@ cd ./target/{artifactdId}-{version}-full/
 #### Scenario1
 ScenarioID = ls_1. 
 
-**To run it locally:**
-1. Change `pathToFile` in CsvProvider class. 
-
 
 #### Scenario
 Scenario.jmx file. Test plan for JMeter. Custom metric was created with two PostProcessors (which were written in groovy).
-
-**To run it locally:**
-1. Change `value` for the output file in `User Defined Variables`. 
-2. Set `filename` in `CSV Data Set Config` into path to csv file. 
-
-
 
 

@@ -15,9 +15,9 @@ import com.griddynamics.jagger.invoker.v2.JHttpResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Listener extends ServicesAware implements Provider<InvocationListener> {
+public class ListenerByteSize extends ServicesAware implements Provider<InvocationListener> {
 
-    private static Logger log = LoggerFactory.getLogger(Listener.class);
+    private static Logger log = LoggerFactory.getLogger(ListenerByteSize.class);
 
     private final String metricName = "size-of-body-in-bytes";
 
