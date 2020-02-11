@@ -33,22 +33,22 @@ public class JHttpScenarioProvider {
                         .build();
 
 
-        JLoadProfileUsers u1 = JLoadProfileUsers.builder(NumberOfUsers.of(2)).withStartDelayInSeconds(0).withLifeTimeInSeconds(40).build();
+        JLoadProfileUsers userProfile = JLoadProfileUsers.builder(NumberOfUsers.of(2)).withStartDelayInSeconds(0).withLifeTimeInSeconds(40).build();
 
         JTerminationCriteria jTerminationCriteria = JTerminationCriteriaIterations
                 .of(IterationsNumber.of(9), MaxDurationInSeconds.of(10));
 
-        JLoadTest jLoadTest1 = JLoadTest
-                .builder(Id.of("lt_1"), keyWordService4, JLoadProfileUserGroups.builder(u1).build(), jTerminationCriteria)
+        JLoadTest jLoadTest = JLoadTest
+                .builder(Id.of("load_test_1"), keyWordService4, JLoadProfileUserGroups.builder(userProfile).build(), jTerminationCriteria)
                 .build();
 
 
         JParallelTestsGroup jParallelTestsGroup = JParallelTestsGroup
-                .builder(Id.of("ptg_1"), jLoadTest1)
+                .builder(Id.of("parallel_test_group_1"), jLoadTest)
                 .build();
 
 
-        return JLoadScenario.builder(Id.of("ls_1"), jParallelTestsGroup)
+        return JLoadScenario.builder(Id.of("load_scenario_1"), jParallelTestsGroup)
                 .build();
     }
 }

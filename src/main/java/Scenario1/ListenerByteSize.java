@@ -48,8 +48,8 @@ public class ListenerByteSize extends ServicesAware implements Provider<Invocati
                     log.info("Response: " + jHttpResponse);
                     log.info("Query: " + jHttpQuery);
                     log.info("Endpoint: " + jHttpEndpoint);
-                    int size = jHttpResponse.getBody().toString().getBytes().length;
-                    getMetricService().saveValue(metricName, size);
+                    int byteSize = jHttpResponse.getBody().toString().getBytes().length;
+                    getMetricService().saveValue(metricName, byteSize);
                 }
             }
 
