@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import Scenario1.util.PropertiesProvider;
 
 public class QueriesProvider extends JHttpQuery implements Iterable {
     CsvProvider csvProvider = new CsvProvider();
@@ -13,17 +14,20 @@ public class QueriesProvider extends JHttpQuery implements Iterable {
     @Override
     public Iterator iterator() {
         List<JHttpQuery> queries = new ArrayList<>();
-        String path = "/api/kws/v4/search";
-        for (List<String> query : csvProvider.CsvProvider()) {
+        PropertiesProvider propertiesProvider = new PropertiesProvider();
+
+        for (List<String> query : csvProvider.CsvProvider(propertiesProvider.getPathToCsvFile())) {
             queries.add(new JHttpQuery()
-                    .path(path)
+                    .path(propertiesProvider.getPathToSearchPhrase())
                     .header("Accept", "application/xml")
                     .queryParam("searchPhrase", String.valueOf(query))
                     .get()
                     .responseBodyType(String.class));
         }
+        // String path = "/api/kws/v4/search";
+
         return queries.iterator();
-        }
+    }
 }
 
 

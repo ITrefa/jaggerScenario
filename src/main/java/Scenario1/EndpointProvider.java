@@ -10,11 +10,10 @@ import java.util.List;
 public class EndpointProvider implements Iterable {
     private List<JHttpEndpoint> endpoints = new ArrayList<>();
 
-    public EndpointProvider() {
-        JHttpEndpoint httpEndpoint = new JHttpEndpoint(URI.create("http://localhost:8082/"));
+    public EndpointProvider(String endpoint) {
+        JHttpEndpoint httpEndpoint = new JHttpEndpoint(URI.create(endpoint));
         endpoints.add(httpEndpoint);
     }
-
     @Override
     public Iterator<JHttpEndpoint> iterator() {
         return endpoints.iterator();

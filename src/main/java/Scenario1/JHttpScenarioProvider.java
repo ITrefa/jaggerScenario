@@ -16,6 +16,7 @@ import com.griddynamics.jagger.user.test.configurations.termination.auxiliary.Ma
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import Scenario1.util.PropertiesProvider;
 
 @Configuration
 public class JHttpScenarioProvider {
@@ -23,7 +24,7 @@ public class JHttpScenarioProvider {
     public JLoadScenario loadScenario() {
 
         JTestDefinition keyWordService4 =
-                JTestDefinition.builder(Id.of("keyWordService4"), new EndpointProvider())
+                JTestDefinition.builder(Id.of("keyWordService4"), new EndpointProvider(new PropertiesProvider().getEndpoint()))
                         .withLoadBalancer(JLoadBalancer.builder(JLoadBalancer.DefaultLoadBalancer.ONE_BY_ONE).build())
                         .withQueryProvider(new QueriesProvider())
                         .addValidator(new CodeValidator())

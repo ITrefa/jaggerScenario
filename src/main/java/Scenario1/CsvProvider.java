@@ -8,12 +8,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CsvProvider {
-
     private static final String COMMA_DELIMITER = ",";
 
-    public List<List<String>> CsvProvider() {
+    public List<List<String>> CsvProvider(String pathToFile) {
         List<List<String>> records = new ArrayList<>();
-        String pathToFile = System.getProperty("user.home") + "/jagger/dataProvider.csv";
+
+        //String pathToFile = "/Users/elaletina/jagger/src/main/resources/dataProvider.csv";
         try (
                 BufferedReader br = new BufferedReader(new FileReader(pathToFile))) {
             String line;
