@@ -34,7 +34,7 @@ public class JHttpScenarioProvider {
                         .build();
 
 
-        JLoadProfileUsers userProfile = JLoadProfileUsers.builder(NumberOfUsers.of(2)).withStartDelayInSeconds(0).withLifeTimeInSeconds(40).build();
+        JLoadProfileUsers userProfile = JLoadProfileUsers.builder(NumberOfUsers.of(1)).withStartDelayInSeconds(0).withLifeTimeInSeconds(40).build();
 
         JTerminationCriteria jTerminationCriteria = JTerminationCriteriaIterations
                 .of(IterationsNumber.of(9), MaxDurationInSeconds.of(10));

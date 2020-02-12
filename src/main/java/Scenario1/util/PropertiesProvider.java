@@ -17,11 +17,12 @@ public class PropertiesProvider {
     }
 
     public String getEndpoint() {
-       return getTestProperties().getProperty("endPoint");
+        return getTestProperties().getProperty("endPoint");
     }
 
     public String getPathToCsvFile() {
-        return getTestProperties().getProperty("pathToFile");
+       File file = new File(getTestProperties().getProperty("pathToFile"));
+       return file.getAbsolutePath();
     }
 
     public String getPathToSearchPhrase() {

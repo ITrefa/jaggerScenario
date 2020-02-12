@@ -2,6 +2,7 @@ package Scenario1;
 
 import com.griddynamics.jagger.invoker.v2.JHttpQuery;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -16,14 +17,15 @@ public class QueriesProvider extends JHttpQuery implements Iterable {
         List<JHttpQuery> queries = new ArrayList<>();
         PropertiesProvider propertiesProvider = new PropertiesProvider();
 
-        for (List<String> query : csvProvider.CsvProvider(propertiesProvider.getPathToCsvFile())) {
-            queries.add(new JHttpQuery()
-                    .path(propertiesProvider.getPathToSearchPhrase())
-                    .header("Accept", "application/xml")
-                    .queryParam("searchPhrase", String.valueOf(query))
-                    .get()
-                    .responseBodyType(String.class));
-        }
+            for (List<String> query : csvProvider.CsvProvider(propertiesProvider.getPathToCsvFile())) {
+                queries.add(new JHttpQuery()
+                        .path(propertiesProvider.getPathToSearchPhrase())
+                        .header("Accept", "application/xml")
+                        .queryParam("searchPhrase", String.valueOf(query))
+                        .get()
+                        .responseBodyType(String.class));
+            }
+
 
         return queries.iterator();
     }
