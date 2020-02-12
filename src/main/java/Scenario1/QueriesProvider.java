@@ -24,7 +24,6 @@ public class QueriesProvider extends JHttpQuery implements Iterable {
                     .get()
                     .responseBodyType(String.class));
         }
-        // String path = "/api/kws/v4/search";
 
         return queries.iterator();
     }
