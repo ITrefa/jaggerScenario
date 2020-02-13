@@ -1,9 +1,11 @@
 package Scenario1.util;
 
+
 import java.io.*;
 import java.util.Properties;
 
 public class PropertiesProvider {
+
 
     public Properties getTestProperties() {
         InputStream input = getClass().getClassLoader().getResourceAsStream("test.properties");
