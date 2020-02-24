@@ -1,5 +1,6 @@
 package Scenario1;
 
+import Scenario1.util.PropertiesProvider;
 import com.griddynamics.jagger.user.test.configurations.JLoadScenario;
 import com.griddynamics.jagger.user.test.configurations.JLoadTest;
 import com.griddynamics.jagger.user.test.configurations.JParallelTestsGroup;
@@ -16,8 +17,6 @@ import com.griddynamics.jagger.user.test.configurations.termination.auxiliary.Ma
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import Scenario1.util.PropertiesProvider;
-
 @Configuration
 public class JHttpScenarioProvider {
     @Bean
@@ -27,8 +26,8 @@ public class JHttpScenarioProvider {
                 JTestDefinition.builder(Id.of("keyWordService4"), new EndpointProvider(new PropertiesProvider().getEndpoint()))
                         .withLoadBalancer(JLoadBalancer.builder(JLoadBalancer.DefaultLoadBalancer.ONE_BY_ONE).build())
                         .withQueryProvider(new QueriesProvider())
-                        .addValidator(new CodeValidator())
-                        .addValidator(new TypeValidator())
+                   //     .addValidator(new CodeValidator())
+                   //     .addValidator(new TypeValidator())
                         .addListener(new ListenerByteSize())
                         .addListener(new ListenerCountProduct())
                         .build();

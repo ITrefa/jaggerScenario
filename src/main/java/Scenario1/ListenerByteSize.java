@@ -52,7 +52,6 @@ public class ListenerByteSize extends ServicesAware implements Provider<Invocati
                     getMetricService().saveValue(metricName, byteSize);
                 }
             }
-
             @Override
             public void onFail(InvocationInfo invocationInfo, InvocationException e) {
             }

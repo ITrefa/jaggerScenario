@@ -1,13 +1,12 @@
 package Scenario1;
 
+import Scenario1.util.PropertiesProvider;
 import com.griddynamics.jagger.invoker.v2.JHttpQuery;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import Scenario1.util.PropertiesProvider;
 
 public class QueriesProvider extends JHttpQuery implements Iterable {
     CsvProvider csvProvider = new CsvProvider();
@@ -17,6 +16,7 @@ public class QueriesProvider extends JHttpQuery implements Iterable {
         List<JHttpQuery> queries = new ArrayList<>();
         PropertiesProvider propertiesProvider = new PropertiesProvider();
 
+        try {
             for (List<String> query : csvProvider.CsvProvider(propertiesProvider.getPathToCsvFile())) {
                 queries.add(new JHttpQuery()
                         .path(propertiesProvider.getPathToSearchPhrase())
@@ -25,6 +25,9 @@ public class QueriesProvider extends JHttpQuery implements Iterable {
                         .get()
                         .responseBodyType(String.class));
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
         return queries.iterator();

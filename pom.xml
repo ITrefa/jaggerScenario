@@ -38,6 +38,12 @@
     </repositories>
 
     <dependencies>
+
+        <dependency>
+            <groupId>net.sf.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>2.3</version>
+        </dependency>
         <!-- Jagger service-->
         <dependency>
             <groupId>com.griddynamics.jagger</groupId>

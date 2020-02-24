@@ -4,6 +4,7 @@ package Scenario1.util;
 import java.io.*;
 import java.util.Properties;
 
+
 public class PropertiesProvider {
 
 
@@ -22,9 +23,12 @@ public class PropertiesProvider {
         return getTestProperties().getProperty("endPoint");
     }
 
-    public String getPathToCsvFile() {
-       File file = new File(getTestProperties().getProperty("pathToFile"));
-       return file.getAbsolutePath();
+    public InputStream getPathToCsvFile() throws IOException {
+        return getClass().getClassLoader().getResourceAsStream(getTestProperties().getProperty("pathToFile"));
+
+//      File file = new File(getTestProperties().getProperty("pathToFile"));
+//      return file.getAbsolutePath();
+
     }
 
     public String getPathToSearchPhrase() {
