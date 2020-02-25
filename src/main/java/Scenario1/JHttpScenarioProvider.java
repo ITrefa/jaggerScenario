@@ -26,8 +26,8 @@ public class JHttpScenarioProvider {
                 JTestDefinition.builder(Id.of("keyWordService4"), new EndpointProvider(new PropertiesProvider().getEndpoint()))
                         .withLoadBalancer(JLoadBalancer.builder(JLoadBalancer.DefaultLoadBalancer.ONE_BY_ONE).build())
                         .withQueryProvider(new QueriesProvider())
-                   //     .addValidator(new CodeValidator())
-                   //     .addValidator(new TypeValidator())
+                       .addValidator(new CodeValidator())
+                        .addValidator(new TypeValidator())
                         .addListener(new ListenerByteSize())
                         .addListener(new ListenerCountProduct())
                         .build();
